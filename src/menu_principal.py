@@ -2,6 +2,7 @@ import os
 from fincas_produccion import ver_fincas
 from analisis_produccion import regresion_produccion
 from repositorio_abrir import abrir_repositorio
+from centros_acopio import ver_centrosacopio
 
 def limpiar_consola():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -25,11 +26,11 @@ if __name__ == "__main__":
             entrada_usuario = int(input("Ingrese su opción: "))
         except ValueError:
             print("Error: Ingrese datos numericos.")
-            print("Presione enter para continuar: ")
+            print("Presione enter para continuar")
             continue
         except IndexError:
             print("Error: Entrada fuera del rango.")
-            print("Presione enter para continuar: ")
+            print("Presione enter para continuar")
             continue
         except KeyboardInterrupt:
             print("Error: Interrupcion del teclado.")
@@ -39,7 +40,7 @@ if __name__ == "__main__":
                 case 1:
                     ver_fincas()
                 case 2:
-                    None
+                    ver_centrosacopio()
                 case 3:
                     None
                 case 4:
@@ -51,4 +52,4 @@ if __name__ == "__main__":
                 case 0:
                     break
                 case _:
-                        print("Error: Ingrese una opción valida.")
+                    print("Error: Ingrese una opción valida.")
