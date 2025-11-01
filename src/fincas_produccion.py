@@ -29,7 +29,7 @@ def click_event(event):
             mostrar_info(c["nombre"], c["info"])
             break
 
-def ver_centrosacopio():
+def ver_fincas():
     fig = plt.figure(figsize=(6,6))
     ax = plt.axes(projection=ccrs.PlateCarree())
 
@@ -39,14 +39,11 @@ def ver_centrosacopio():
     ax.add_feature(cfeature.LAND)
     ax.add_feature(cfeature.LAKES, color='lightblue')
 
-    # Dibujar cada punto rojo y su etiqueta
     for c in centros:
         ax.plot(c["lon"], c["lat"], marker='o', color='red', markersize=6, transform=ccrs.PlateCarree())
         ax.text(c["lon"] + 0.05, c["lat"] + 0.05, c["nombre"],
                 transform=ccrs.PlateCarree(), fontsize=8, color='red')
 
-    plt.title('Illinois - Centros de acopio')
+    plt.title('Illinois - Fincas')
     fig.canvas.mpl_connect("button_press_event", click_event)
     plt.show()
-
-ver_centrosacopio()
