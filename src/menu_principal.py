@@ -3,6 +3,7 @@ from fincas_produccion import ver_fincas
 from analisis_produccion import regresion_produccion
 from repositorio_abrir import abrir_repositorio
 from centros_acopio import ver_centrosacopio
+from puertos import ver_puertos
 
 def limpiar_consola():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -42,7 +43,7 @@ if __name__ == "__main__":
                 case 2:
                     ver_centrosacopio()
                 case 3:
-                    None
+                    ver_puertos()
                 case 4:
                     None
                 case 5:
