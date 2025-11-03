@@ -14,9 +14,10 @@ def menu_principal():
         print("1. Ver fincas de producción.")
         print("2. Ver centros de acopio.")
         print("3. Ver puertos.")
-        print("4. Ver ruta mas cercana. ")
-        print("5. Analisis de producción anual.")
-        print("6. Ver repositorio de código.")
+        print("4. Ver ruta mas cercana de las fincas al centro de acopio.")
+        print("5. Ver ruta mas cercana del centro de acopio al puerto")
+        print("6. Analisis de producción anual.")
+        print("7. Ver repositorio de código.")
         print("0. Salir.")
 
 if __name__ == "__main__":
@@ -47,8 +48,10 @@ if __name__ == "__main__":
                 case 4:
                     None
                 case 5:
-                    regresion_produccion()
+                    None
                 case 6:
+                    regresion_produccion()
+                case 7:
                     abrir_repositorio()
                 case 0:
                     break

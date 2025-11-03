@@ -4,13 +4,15 @@ import cartopy.feature as cfeature
 import tkinter as tk
 from tkinter import messagebox
 
-centros = [
-    {"nombre": "LaSalle", "lat": 41.3339, "lon": -89.0911,
-     "info": "Condado de LaSalle, Illinois.\nImportante región agrícola."},
-    {"nombre": "Iroquois", "lat": 40.7453, "lon": -87.8251,
-     "info": "Condado de Iroquois, Illinois.\nProducción destacada de maíz y soya."},
-    {"nombre": "McLean", "lat": 40.4931, "lon": -88.8454,
-     "info": "Condado de McLean, Illinois.\nUno de los mayores productores de granos."}
+# Lista de fincas
+fincas = [
+    {"nombre": "Finca 1", "lat": 40.92, "lon": -89.53, "info": "Parcela de producción"},
+    {"nombre": "Finca 2", "lat": 40.92, "lon": -89.54, "info": "Parcela de producción"},
+    {"nombre": "Finca 3", "lat": 40.91, "lon": -89.53, "info": "Parcela de producción"},
+    {"nombre": "Finca 4", "lat": 40.91, "lon": -89.52, "info": "Parcela de producción"},
+    {"nombre": "Finca 5", "lat": 40.91, "lon": -89.54, "info": "Parcela de producción"},
+    {"nombre": "Finca 6", "lat": 40.91, "lon": -89.55, "info": "Parcela de producción"},
+    {"nombre": "Finca 7", "lat": 40.91, "lon": -89.51, "info": "Parcela de producción"},
 ]
 
 def mostrar_info(nombre, info):
@@ -22,28 +24,33 @@ def mostrar_info(nombre, info):
 def click_event(event):
     if not event.inaxes:
         return
-    for c in centros:
-        dx = abs(event.xdata - c["lon"])
-        dy = abs(event.ydata - c["lat"])
-        if dx < 0.15 and dy < 0.15:  # tolerancia
-            mostrar_info(c["nombre"], c["info"])
+    for f in fincas:
+        dx = abs(event.xdata - f["lon"])
+        dy = abs(event.ydata - f["lat"])
+        if dx < 0.01 and dy < 0.01:  # tolerancia más precisa
+            mostrar_info(f["nombre"], f["info"])
             break
 
 def ver_fincas():
     fig = plt.figure(figsize=(6,6))
     ax = plt.axes(projection=ccrs.PlateCarree())
 
-    ax.set_extent([-91.6, -87.4, 36.9, 42.5])
+    # Zoom ajustado a fincas
+    ax.set_extent([-89.57, -89.49, 40.89, 40.94])
+
+    # Agregar elementos del mapa
     ax.add_feature(cfeature.STATES.with_scale('10m'), edgecolor='black')
     ax.add_feature(cfeature.BORDERS.with_scale('10m'))
     ax.add_feature(cfeature.LAND)
     ax.add_feature(cfeature.LAKES, color='lightblue')
 
-    for c in centros:
-        ax.plot(c["lon"], c["lat"], marker='o', color='red', markersize=6, transform=ccrs.PlateCarree())
-        ax.text(c["lon"] + 0.05, c["lat"] + 0.05, c["nombre"],
-                transform=ccrs.PlateCarree(), fontsize=8, color='red')
+    # Dibujar fincas
+    for f in fincas:
+        ax.plot(f["lon"], f["lat"], marker='o', color='blue', markersize=6, transform=ccrs.PlateCarree())
+        ax.text(f["lon"] + 0.005, f["lat"] + 0.005, f["nombre"],
+                transform=ccrs.PlateCarree(), fontsize=8, color='blue')
 
-    plt.title('Illinois - Fincas')
+    plt.title('Mapa de Fincas - Parcela de producción')
     fig.canvas.mpl_connect("button_press_event", click_event)
     plt.show()
+

@@ -4,16 +4,16 @@ import cartopy.feature as cfeature
 import tkinter as tk
 from tkinter import messagebox
 
-lat, lon = 46.0104, -122.8424
+lat, lon = 38.61, -90.20
 
 def mostrar_info():
     ventana_raiz = tk.Tk()
     ventana_raiz.withdraw()
     messagebox.showinfo(
-        "Port of Kalama",
-        "Ubicación: Kalama, Washington\n"
-        "Latitud: 46.0104\nLongitud: -122.8424\n"
-        "Tipo: Puerto industrial y de carga."
+        "Port of Metropolitan St. Louis",
+        "Ubicación: Port of Metropolitan St. Louis\n"
+        "Latitud: 38.61° N\nLongitud: 90.20° W\n"
+        "Tipo: Puerto fluvial en el río Misisipi."
     )
     ventana_raiz.destroy()
 
@@ -28,19 +28,18 @@ def ver_puertos():
     fig = plt.figure(figsize=(6,6))
     ax = plt.axes(projection=ccrs.PlateCarree())
 
-    ax.set_extent([-124, -121, 45.5, 47.5])
+    ax.set_extent([-92, -88, 37, 40])
     ax.add_feature(cfeature.STATES.with_scale('10m'), edgecolor='black')
     ax.add_feature(cfeature.BORDERS.with_scale('10m'))
     ax.add_feature(cfeature.LAND)
     ax.add_feature(cfeature.LAKES, color='lightblue')
     ax.add_feature(cfeature.COASTLINE)
 
-    # Punto del puerto
     ax.plot(lon, lat, marker='o', color='red', markersize=6, transform=ccrs.PlateCarree())
-    ax.text(lon + 0.05, lat + 0.05, 'Port of Kalama',
+    ax.text(lon + 0.1, lat + 0.1, 'Port of Metropolitan St. Louis',
             transform=ccrs.PlateCarree(), fontsize=8, color='red')
 
-    plt.title('Washington - Port of Kalama')
+    plt.title('Port of Metropolitan St. Louis - 38.61° N, 90.20° W')
 
     fig.canvas.mpl_connect("button_press_event", click_event)
     plt.show()
