@@ -1,9 +1,7 @@
 import os
-from fincas_produccion import ver_fincas
+import webbrowser
 from analisis_produccion import regresion_produccion
 from repositorio_abrir import abrir_repositorio
-from centros_acopio import ver_centrosacopio
-from puertos import ver_puertos
 
 def limpiar_consola():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -40,15 +38,15 @@ if __name__ == "__main__":
         else:
             match entrada_usuario:
                 case 1:
-                    ver_fincas()
+                    webbrowser.open_new(r'pages\index\mapa_fincas_illinois.html')
                 case 2:
-                    ver_centrosacopio()
+                    webbrowser.open_new(r'pages\index\centro_de_acopio.html')
                 case 3:
-                    ver_puertos()
+                    webbrowser.open_new(r'pages\index\puerto_st_louis.html')
                 case 4:
-                    None
+                    webbrowser.open_new(r'pages\index\rutas_fincas_centro.html')
                 case 5:
-                    None
+                    webbrowser.open_new(r'pages\index\ruta_centro_puerto.html')
                 case 6:
                     regresion_produccion()
                 case 7:

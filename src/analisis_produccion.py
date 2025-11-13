@@ -28,3 +28,5 @@ def regresion_produccion():
         plt.scatter(X, y)
         plt.plot(X, y_pred, color='red')
         plt.show()
+
+regresion_produccion()
