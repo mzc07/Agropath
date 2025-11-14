@@ -1,0 +1,169 @@
+:root {
+    --verde-oscuro: #1B4332;
+    --verde: #2D6A4F;
+    --verde-claro: #95D5B2;
+    --blanco: #F1FAEE;
+}
+
+/* --- GENERAL --- */
+body {
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    background-color: var(--blanco);
+    color: var(--verde-oscuro);
+    padding-top: 70px;
+}
+
+header {
+    background-color: var(--verde);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    height: 60px;
+}
+
+.logo {
+    color: var(--blanco);
+    font-size: 1.4em;
+    margin: 0;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.menu a:hover,
+.menu a.activo {
+    background-color: var(--verde-claro);
+    color: var(--verde-oscuro);
+}
+
+/* --- SECCIÓN DEL MAPA / GRÁFICO --- */
+main {
+    width: 90%;
+    margin: auto;
+    padding: 30px 0;
+}
+
+.mapa-seccion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+    background-color: #ffffff;
+    border: 1px solid #cce3d3;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.mapa-cuadro {
+    flex: 2;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Mapas responsivos (iframes) */
+.mapa-cuadro iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* mantiene proporción */
+    border: none;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Contenedor del gráfico */
+.grafico-container {
+    width: 100%;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Imagen o canvas del gráfico */
+.grafico {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* --- CUADRO DE INFORMACIÓN --- */
+.info-cuadro {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--verde-claro);
+    color: var(--verde-oscuro);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.info-cuadro h3 {
+    margin-top: 0;
+}
+
+.info-cuadro p {
+    line-height: 1.5;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--verde);
+    color: var(--blanco);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 3px 0;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 900px) {
+    .mapa-seccion {
+        flex-direction: column;
+    }
+}
+
+/* Ajuste general para las imágenes de info */
+.info-cuadro img,
+.info-img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    border-radius: 6px;
+    display: block;
+}
