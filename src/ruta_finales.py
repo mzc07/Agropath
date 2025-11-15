@@ -1,6 +1,3 @@
-# rutas_unificadas.py
-# Requisitos: pip install folium requests networkx geopy
-
 import requests
 import folium
 import networkx as nx
@@ -11,7 +8,8 @@ import random
 # 1. DATOS
 # ======================================================
 
-# Fincas
+# Lista de fincas con sus coordenadas y un texto descriptivo.
+# Se usarán como puntos de origen para calcular rutas hacia el centro de acopio.
 fincas = [
     {"nombre": "Finca 1", "lat": 40.92, "lon": -89.53, "info": "Parcela de producción"},
     {"nombre": "Finca 2", "lat": 40.92, "lon": -89.54, "info": "Parcela de producción"},
@@ -22,10 +20,10 @@ fincas = [
     {"nombre": "Finca 7", "lat": 40.91, "lon": -89.51, "info": "Parcela de producción"},
 ]
 
-# Centro de acopio
-centro_acopio = (39.481427, -88.303999)  # Clarkson Grain Mattoon Plant
+# Coordenadas del centro de acopio (destino principal).
+centro_acopio = (39.481427, -88.303999)
 
-# Destino adicional: Puerto de Metropolitan St. Louis
+# Información del puerto (destino adicional).
 puerto = {
     "nombre": "Port of Metropolitan St. Louis",
     "lat": 38.61,
@@ -42,32 +40,75 @@ puerto = {
 # ======================================================
 
 def get_osrm_route(origin_latlon, dest_latlon, profile="driving"):
-    """Consulta OSRM y devuelve los puntos y la distancia total."""
+    """
+    Consulta OSRM (un servicio de rutas libre) para obtener la ruta entre dos puntos.
+
+    Parámetros:
+    - origin_latlon: (lat, lon) del punto de origen.
+    - dest_latlon: (lat, lon) del destino.
+    - profile: tipo de ruta (por defecto "driving").
+
+    Retorna:
+    - route_points: lista de coordenadas (lat, lon) de la ruta alineadas para folium.
+    - distance: distancia total en metros.
+
+    Por qué se usa OSRM:
+    - Permite obtener rutas reales de carretera sin necesidad de APIs privadas.
+    """
+    # OSRM requiere coordenadas como lon,lat
     o_lon, o_lat = origin_latlon[1], origin_latlon[0]
     d_lon, d_lat = dest_latlon[1], dest_latlon[0]
+
+    # Construcción del endpoint API de OSRM.
     url = (
         f"http://router.project-osrm.org/route/v1/{profile}/"
         f"{o_lon},{o_lat};{d_lon},{d_lat}?overview=full&geometries=geojson"
     )
+
+    # Petición a OSRM
     resp = requests.get(url, timeout=20)
     resp.raise_for_status()
     data = resp.json()
+
+    # OSRM devuelve coordenadas (lon, lat), se convierten a (lat, lon)
     coords = data["routes"][0]["geometry"]["coordinates"]
     route_points = [(pt[1], pt[0]) for pt in coords]
+
     return route_points, data["routes"][0]["distance"]
 
+
 def build_graph(route_points):
-    """Crea un grafo con pesos según distancias geodésicas."""
+    """
+    Construye un grafo dirigido con pesos basados en la distancia geodésica entre puntos consecutivos.
+
+    Por qué se crea un grafo:
+    - Permite representar rutas como una estructura de nodos y aristas.
+    - Es útil para análisis posteriores: pesos totales, rutas alternativas, optimización, etc.
+    """
     G = nx.DiGraph()
+
+    # Por cada par consecutivo de puntos de la ruta, se calcula la distancia real
+    # usando geodesic (más precisa en distancias sobre la Tierra).
     for i in range(len(route_points) - 1):
         p1, p2 = route_points[i], route_points[i + 1]
         dist_m = geodesic(p1, p2).meters
         G.add_edge(p1, p2, weight=dist_m)
+
     return G
 
+
 def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_filename="rutas_unificadas.html"):
-    """Crea un único mapa con todas las rutas."""
-    # Centro aproximado del mapa
+    """
+    Crea un mapa con:
+    - Marcadores de fincas
+    - Centro de acopio
+    - Puerto
+    - Rutas desde cada finca al centro
+    - Ruta adicional centro → puerto
+
+    Se usa Folium porque permite generar mapas HTML interactivos fáciles de visualizar.
+    """
+    # Se calcula un punto medio aproximado para centrar el mapa inicialmente.
     mid_lat = sum(f["lat"] for f in fincas) / len(fincas)
     mid_lon = sum(f["lon"] for f in fincas) / len(fincas)
     m = folium.Map(location=[mid_lat, mid_lon], zoom_start=7)
@@ -81,7 +122,7 @@ def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_file
             icon=folium.Icon(color="green", icon="leaf"),
         ).add_to(m)
 
-    # Centro de acopio (Clarkson Grain Mattoon Plant)
+    # Centro de acopio
     folium.Marker(
         centro_acopio,
         tooltip="Clarkson Grain Mattoon Plant",
@@ -95,7 +136,7 @@ def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_file
         icon=folium.Icon(color="red", icon="home"),
     ).add_to(m)
 
-    # Puerto de Metropolitan St. Louis
+    # Puerto
     folium.Marker(
         location=(puerto["lat"], puerto["lon"]),
         tooltip=puerto["nombre"],
@@ -103,8 +144,9 @@ def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_file
         icon=folium.Icon(color="blue", icon="anchor"),
     ).add_to(m)
 
-    # Rutas de fincas → centro
+    # Líneas de las rutas finca → centro
     for finca, (route_points, distance_m) in rutas.items():
+        # Se usa un color aleatorio para diferenciar visualmente cada ruta.
         color = "#%06x" % random.randint(0, 0xFFFFFF)
         folium.PolyLine(
             route_points,
@@ -114,7 +156,7 @@ def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_file
             tooltip=f"{finca}: {distance_m/1000:.2f} km",
         ).add_to(m)
 
-    # Ruta del centro de acopio → puerto
+    # Línea de la ruta centro → puerto
     if ruta_extra:
         route_points, distance_m = ruta_extra
         folium.PolyLine(
@@ -125,10 +167,11 @@ def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_file
             tooltip=f"Centro → Puerto: {distance_m/1000:.2f} km",
         ).add_to(m)
 
-    # Ajustar vista
+    # Cálculo automático del zoom usando todos los puntos del mapa
     all_points = [p for ruta in rutas.values() for p in ruta[0]]
     if ruta_extra:
         all_points += ruta_extra[0]
+
     sw = [min(p[0] for p in all_points), min(p[1] for p in all_points)]
     ne = [max(p[0] for p in all_points), max(p[1] for p in all_points)]
     m.fit_bounds([sw, ne])
@@ -136,14 +179,18 @@ def build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra, map_file
     m.save(map_filename)
     return m
 
+
 # ======================================================
 # 3. PROCESO PRINCIPAL
 # ======================================================
 
 if __name__ == "__main__":
+    # Diccionario donde se guardan las rutas generadas para cada finca.
     rutas = {}
 
     print("\nGenerando rutas de fincas → centro de acopio...\n")
+
+    # Para cada finca, se solicita a OSRM la ruta hacia el centro de acopio.
     for finca in fincas:
         origen = (finca["lat"], finca["lon"])
         try:
@@ -153,7 +200,7 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Error con {finca['nombre']}: {e}")
 
-    # Ruta del centro al puerto
+    # Ruta extra: centro → puerto
     print("\nGenerando ruta centro de acopio → puerto...\n")
     ruta_extra = None
     try:
@@ -163,18 +210,20 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Error en ruta adicional: {e}")
 
-    # Construcción del grafo total
+    # Construcción del grafo total sumando todas las rutas.
     G_total = nx.DiGraph()
     for finca, (ruta, _) in rutas.items():
         G_total.update(build_graph(ruta))
+
     if ruta_extra:
         G_total.update(build_graph(ruta_extra[0]))
 
     print(f"\nGrafo total: {G_total.number_of_nodes()} nodos, {G_total.number_of_edges()} aristas.")
+
+    # Cálculo del peso total (suma de todas las distancias entre nodos).
     total_weight = sum(nx.get_edge_attributes(G_total, "weight").values())
     print(f"Peso total del grafo: {total_weight/1000:.2f} km")
 
-    # Crear mapa unificado
+    # Creación del mapa unificado en HTML
     build_unified_map(fincas, centro_acopio, puerto, rutas, ruta_extra)
     print("\nMapa guardado como rutas_unificadas.html.")
-
