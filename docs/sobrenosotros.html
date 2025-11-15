@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sobre los autores - AgroPath</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        
+
+        .encabezado-autores {
+            width: 90%;
+                margin: 20px auto 8px;
+        }
+
+
+        .autores-container {
+            width: 90%;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .autor-card {
+            background: #ffffff;
+            border: 1px solid #cce3d3;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .autor-foto {
+            width: 92px;
+            height: 92px;
+            border-radius: 10px;
+            flex: 0 0 92px;
+            overflow: hidden;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .autor-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .autor-info h4 {
+            margin: 0 0 6px 0;
+            font-size: 1.05rem;
+            color: var(--verde-oscuro);
+        }
+
+        .autor-info .cargo {
+            font-size: 0.92rem;
+            color: rgba(27,67,50,0.85);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .autor-info p {
+            margin: 0;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            color: rgba(27,67,50,0.85);
+        }
+
+        .autor-meta {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: rgba(27,67,50,0.8);
+        }
+
+        @media (max-width:900px){
+            .autor-card { align-items: center; }
+            .autor-foto { width:72px; height:72px; flex:0 0 72px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <h1 class="logo">AgroPath</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="mapa1.html">Puntos de Interes</a></li>
+                <li><a href="mapa2.html">Rutas</a></li>
+                <li><a href="mapa3.html">Predicción</a></li>
+                <li><a href="analisis.html">Analisis</a></li>
+                <li><a href="autores.html" class="activo">Sobre nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <section class="encabezado-autores">
+        <h2>Equipo — Autores del proyecto</h2>
+        <p style="margin-top:8px; margin-bottom:0; color: rgba(27,67,50,0.9);">
+            Equipo interdisciplinario responsable del desarrollo, análisis y visualización de datos para AgroPath.
+            Aquí encontrarás una breve biografía, rol y contacto de cada integrante.
+        </p>
+    </section>
+
+
+        <div class="autores-container">
+            <article class="autor-card" id="autor-martin">
+                <div class="autor-foto">
+                    <img src="https://via.placeholder.com/300x300.png?text=Mart%C3%ADn" alt="Foto Martín">
+                </div>
+                <div class="autor-info">
+                    <h4>Martín Ariza</h4>
+                    <div class="cargo">Estudiante — Ingeniería en Ciencia de Datos</div>
+                    <p>Coordinador del proyecto. Desarrollo del pipeline de datos, limpieza de datasets y generación de mapas interactivos con Python (Folium).</p>
+                    <div class="autor-meta">Email: martin@example.com · GitHub: <a href="#" style="color:var(--verde-oscuro)">mzac07</a></div>
+                </div>
+            </article>
+
+            <article class="autor-card" id="autor-sol">
+                <div class="autor-foto">
+                    <img src="https://via.placeholder.com/300x300.png?text=Sol" alt="Foto Sol">
+                </div>
+                <div class="autor-info">
+                    <h4>Sol Arias</h4>
+                    <div class="cargo">Análisis espacial y SIG</div>
+                    <p>Responsable del modelado espacial y la integración de capas geográficas. Coordina validación de ubicaciones y control de calidad de los datos geoespaciales.</p>
+                    <div class="autor-meta">Email: sol@example.com</div>
+                </div>
+            </article>
+
+            <article class="autor-card" id="autor-ivanna">
+                <div class="autor-foto">
+                    <img src="https://via.placeholder.com/300x300.png?text=Ivanna" alt="Foto Ivanna">
+                </div>
+                <div class="autor-info">
+                    <h4>Ivanna Álvarez</h4>
+                    <div class="cargo">Ingeniería de software</div>
+                    <p>Diseño e implementación de la interfaz web, alojamiento de páginas estáticas y optimización de la integración entre iframes y la plantilla principal.</p>
+                    <div class="autor-meta">Email: ivanna@example.com</div>
+                </div>
+            </article>
+
+            <article class="autor-card" id="autor-maria">
+                <div class="autor-foto">
+                    <img src="https://via.placeholder.com/300x300.png?text=Mar%C3%ADa" alt="Foto Maria">
+                </div>
+                <div class="autor-info">
+                    <h4>María Rueda</h4>
+                    <div class="cargo">Análisis estadístico</div>
+                    <p>Modelos de regresión y evaluación de métricas. Responsable de la sección de predicción y validación estadística de los resultados mostrados en los gráficos.</p>
+                    <div class="autor-meta">Email: maria@example.com</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>Martín Ariza - 2251516</p>
+        <p>Sol Arias - 2251518</p>
+        <p>Ivanna Alvarez - 2251805</p>
+        <p>Maria Rueda - 2251801</p>
+    </footer>
+</body>
+</html>

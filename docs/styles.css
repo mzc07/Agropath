@@ -167,3 +167,86 @@ footer p {
     border-radius: 6px;
     display: block;
 }
+
+/* --- SECCIÓN DE COSTOS --- */
+
+.costo-container {
+    width: 90%;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #cce3d3;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+}
+
+.costo-container h2,
+.costo-container h3,
+.costo-container h4 {
+    color: var(--verde-oscuro);
+    margin-top: 20px;
+}
+
+.costo-container p,
+.costo-container ul,
+.costo-container li {
+    color: rgba(27,67,50,0.85);
+    line-height: 1.5;
+}
+
+/* Listas */
+.costo-container ul {
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+/* Tablas */
+.tabla-costos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+}
+
+.tabla-costos th {
+    background: var(--verde);
+    color: var(--blanco);
+    padding: 10px;
+    text-align: left;
+}
+
+.tabla-costos td {
+    background: #ffffff;
+    border-bottom: 1px solid #cce3d3;
+    padding: 10px;
+}
+
+.tabla-costos tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-costos tr:nth-child(even) td {
+    background: #f4faf7;
+}
+
+/* HR estilizado */
+.costo-container hr {
+    border: none;
+    border-top: 1px solid #cce3d3;
+    margin: 25px 0;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .costo-container {
+        padding: 18px;
+    }
+
+    .tabla-costos th,
+    .tabla-costos td {
+        padding: 8px;
+        font-size: 0.88rem;
+    }
+}
+

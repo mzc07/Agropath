@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Indice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <h1 class="logo">AgroPath</h1>
+            <ul>
+                <li><a href="index.html" class="activo">Inicio</a></li>
+                <li><a href="mapa1.html">Puntos de Interes</a></li>
+                <li><a href="mapa2.html">Rutas</a></li>
+                <li><a href="prediccion.html">Predicción</a></li>
+                <li><a href="analisis.html">Analisis</a></li>
+                <li><a href="sobrenosotros.html">Sobre nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <div class="contenedor-costos">
+
+        <h2>Costo Total</h2>
+        <p>El costo total se divide en el costo de producir la materia prima y el costo logístico inicial.</p>
+        <p>Hay que tener en cuenta que no son valores oficiales sino aproximados de la región.</p>
+
+        <h2>Transporte</h2>
+        <p>Asumimos valores promedio para un camión de transporte de carga pesada, el cual utiliza diésel y tiene una capacidad de carga de 25 toneladas.</p>
+
+        <ul>
+            <li>Precio promedio del diésel en Illinois: <strong>$3.89 por galón</strong> ≈ <strong>$1.03 por litro</strong></li>
+            <li>Consumo del camión: <strong>0.40 L/km</strong></li>
+        </ul>
+
+        <p><strong>Cálculo del costo por kilómetro:</strong></p>
+        <pre>
+        Gasto camión/km = Consumo * Precio diésel
+        Gasto camión/km = 0.40 L/km * 1.03 $/L = 0.412 $/km
+        Gasto Ton/km = (0.412 $/km) / 25 t = 0.01648 $/ton-km
+                </pre>
+
+                <h2>Costo de Producción de Materia Prima</h2>
+                <p>Costo de producción por tonelada = Costo total por hectárea / Rendimiento (t/ha)</p>
+
+                <h3>Insumos (por hectárea)</h3>
+                <ul>
+                    <li>Semillas: $80</li>
+                    <li>Fertilizantes: $140</li>
+                    <li>Químicos: $40</li>
+                    <li><strong>Total insumos: $260</strong></li>
+                </ul>
+
+                <h3>Maquinaria</h3>
+                <ul>
+                    <li>Combustible: $30</li>
+                    <li>Reparación: $50</li>
+                    <li><strong>Total maquinaria: $80</strong></li>
+                </ul>
+
+                <h3>Costos de Capital</h3>
+                <ul>
+                    <li>Renta: $300</li>
+                    <li>Seguro: $25</li>
+                    <li><strong>Total capital: $325</strong></li>
+                </ul>
+
+                <p><strong>Costo total por hectárea = $665</strong></p>
+
+                <h2>Rendimiento Aproximado de Soya</h2>
+                <p>4.30 toneladas = 64 BU/acre</p>
+
+                <pre>
+        Costo de producción por tonelada = 665 $/ha / 4.30 t/ha = 154.65 $/ton
+                </pre>
+
+                <h2>Precio de Mercado</h2>
+                <ul>
+                    <li>Precio por unidad: 10.2 $/BU</li>
+                    <li>1 tonelada = 36.74 BU</li>
+                </ul>
+
+                <pre>
+        36.74 BU/t * 10.2 $/BU = 374.79 $/ton
+                </pre>
+
+            </div>
+        </main>
+
+    <footer>
+        <p>Martín Ariza - 2251516</p>
+        <p>Sol Arias - 2251518</p>
+        <p>Ivanna Alvarez - 2251805</p>
+        <p>Maria Rueda - 2251801</p>
+    </footer>
+</body>
+</html>
