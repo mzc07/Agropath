@@ -6,13 +6,10 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
-        
-
         .encabezado-autores {
             width: 90%;
-                margin: 20px auto 8px;
+            margin: 20px auto 8px;
         }
-
 
         .autores-container {
             width: 90%;
@@ -52,6 +49,13 @@
             display: block;
         }
 
+        /* ============ FIX: permitir que la columna de texto encoga y los textos largos hagan wrap ============ */
+        .autor-info {
+            /* permitir que el contenedor crezca pero también se encoja en layouts flex */
+            flex: 1 1 auto;
+            min-width: 0; /* crítico para que los hijos puedan hacer wrap dentro de un flex item */
+        }
+
         .autor-info h4 {
             margin: 0 0 6px 0;
             font-size: 1.05rem;
@@ -76,6 +80,19 @@
             margin-top: 10px;
             font-size: 0.85rem;
             color: rgba(27,67,50,0.8);
+            /* permitir quiebre de palabras largas y evitar overflow */
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        .autor-meta a {
+            color: var(--verde-oscuro);
+            text-decoration: none;
+            word-break: break-all; /* ayuda con URLs muy largas */
+        }
+
+        .autor-meta a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width:900px){
@@ -108,7 +125,6 @@
         </p>
     </section>
 
-
         <div class="autores-container">
             <article class="autor-card" id="autor-martin">
                 <div class="autor-foto">
@@ -116,9 +132,11 @@
                 </div>
                 <div class="autor-info">
                     <h4>Martín Ariza</h4>
-                    <div class="cargo">Estudiante — Ingeniería en Ciencia de Datos</div>
-                    <p>Desarrollo y supervisión general del código. Hosteo de la página en Github.</p>
-                    <div class="autor-meta">Email: martinsantiagoariza3@gmail.com · GitHub: <a href="github.com/mzc07" style="color:var(--verde-oscuro)">mzc07</a></div>
+                    <div class="cargo">Estudiante</div>
+                    <div class="autor-meta">
+                        Email: <a href="mailto:martinsantiagoariza3@gmail.com">martinsantiagoariza3@gmail.com</a> ·
+                        GitHub: <a href="https://github.com/mzc07" target="_blank" rel="noopener">mzc07</a>
+                    </div>
                 </div>
             </article>
 
@@ -128,9 +146,10 @@
                 </div>
                 <div class="autor-info">
                     <h4>Sol Arias</h4>
-                    <div class="cargo">Estudiante — Ingeniería en Ciencia de Datos</div>
-                    <p>Coordinadora del proyecto. Investigación y analisis geoespacial y economico.</p>
-                    <div class="autor-meta">Email: solvaleriaariasrojas2608@gmail.com</div>
+                    <div class="cargo">Estudiante</div>
+                    <div class="autor-meta">
+                        Email: <a href="mailto:solvaleriaariasrojas2608@gmail.com">solvaleriaariasrojas2608@gmail.com</a>
+                    </div>
                 </div>
             </article>
 
@@ -140,9 +159,10 @@
                 </div>
                 <div class="autor-info">
                     <h4>Ivanna Álvarez</h4>
-                    <div class="cargo">Estudiante — Ingeniería en Ciencia de Datos</div>
-                    <p>Diseño e implementación de la interfaz web y la presentación. Investigación geoespacial.</p>
-                    <div class="autor-meta">Email: ivannaisabelalvarezs@gmail.com</div>
+                    <div class="cargo">Estudiante</div>
+                    <div class="autor-meta">
+                        Email: <a href="mailto:ivannaisabelalvarezs@gmail.com">ivannaisabelalvarezs@gmail.com</a>
+                    </div>
                 </div>
             </article>
 
@@ -152,9 +172,10 @@
                 </div>
                 <div class="autor-info">
                     <h4>Juliana Rueda</h4>
-                    <div class="cargo">Estudiante — Ingeniería en Ciencia de Datos</div>
-                    <p>Supervisora general del desarrollo y diseño del proyecto general.</p>
-                    <div class="autor-meta">Email: julianarpt2@gmail.com</div>
+                    <div class="cargo">Estudiante</div>
+                    <div class="autor-meta">
+                        Email: <a href="mailto:julianarpt2@gmail.com">julianarpt2@gmail.com</a>
+                    </div>
                 </div>
             </article>
         </div>
