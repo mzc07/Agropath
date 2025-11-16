@@ -24,28 +24,27 @@ def calcular_costo_total_soya(distancia_ida_km):
     return costo_total_ton, costo_logistico_ton
 
 
+def calcular_costos():
+    print("--- Calculadora de Costo Total de Soya ---")
+    try:
+        distancia_input = input("Por favor, ingrese la distancia (en km) de la granja al acopio (solo ida): ")
+        
+        distancia_ida = float(distancia_input)
+        
+        if distancia_ida < 0:
+            raise ValueError("La distancia no puede ser negativa.")
 
-print("--- Calculadora de Costo Total de Soya ---")
+        costo_total, flete = calcular_costo_total_soya(distancia_ida)
+        
+        print("\n" + "="*40)
+        print(f"Distancia ingresada: {distancia_ida:.2f} km")
+        print(f"Costo de Producción (Fijo): ${COSTO_PRODUCCION_TON:.2f}/ton")
+        print("-" * 40)
+        print(f"Costo Logístico (Flete Total): ${flete:.2f}/ton")
+        print(f" Costo TOTAL de la Soya al Acopio: ${costo_total:.2f}/ton")
+        print("="*40)
 
-try:
-    distancia_input = input("Por favor, ingrese la distancia (en km) de la granja al acopio (solo ida): ")
-    
-    distancia_ida = float(distancia_input)
-    
-    if distancia_ida < 0:
-        raise ValueError("La distancia no puede ser negativa.")
-
-    costo_total, flete = calcular_costo_total_soya(distancia_ida)
-    
-    print("\n" + "="*40)
-    print(f"Distancia ingresada: {distancia_ida:.2f} km")
-    print(f"Costo de Producción (Fijo): ${COSTO_PRODUCCION_TON:.2f}/ton")
-    print("-" * 40)
-    print(f"Costo Logístico (Flete Total): ${flete:.2f}/ton")
-    print(f" Costo TOTAL de la Soya al Acopio: ${costo_total:.2f}/ton")
-    print("="*40)
-
-except ValueError as e:
-    print(f"\nError de entrada: {e}. Por favor, ingrese un número válido para la distancia.")
-except Exception as e:
-    print(f"\nOcurrió un error: {e}")
+    except ValueError as e:
+        print(f"\nError de entrada: {e}. Por favor, ingrese un número válido para la distancia.")
+    except Exception as e:
+        print(f"\nOcurrió un error: {e}")

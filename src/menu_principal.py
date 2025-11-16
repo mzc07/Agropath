@@ -2,6 +2,7 @@ import os
 import webbrowser
 from analisis_produccion import regresion_produccion
 from repositorio_abrir import abrir_repositorio
+from calculadora import calcular_costos
 
 # Función para limpiar la consola dependiendo del sistema operativo.
 # En Windows usa 'cls', en Linux/Mac usa 'clear'.
@@ -18,7 +19,9 @@ def menu_principal():
     print("4. Ver ruta mas cercana de las fincas al centro de acopio.")
     print("5. Ver ruta mas cercana del centro de acopio al puerto")
     print("6. Analisis de producción anual.")
-    print("8. Ver repositorio de código.")
+    print("7. Ver pagina de analisis.")
+    print("8. Calcular costos de logistica.")
+    print("9. Ver repositorio de código.")
     print("0. Salir.")
 
 # Punto de entrada del programa.
@@ -77,8 +80,9 @@ if __name__ == "__main__":
                 case 7:
                     # Abre documentación en HTML
                     webbrowser.open_new(r'docs\analisis.html')
-
                 case 8:
+                    calcular_costos()
+                case 9:
                     # Abre el repositorio de código desde la función importada
                     abrir_repositorio()
 
