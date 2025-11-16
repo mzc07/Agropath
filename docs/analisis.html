@@ -21,72 +21,144 @@
     </header>
 
     <main>
-    <div class="contenedor-costos">
+    <section>
+  <h2>Costo Total</h2>
+  <p>El costo total se divide en el costo de producir la materia prima y el costo logístico inicial. No son valores oficiales, sino aproximados de la región.</p>
 
-        <h2>Costo Total</h2>
-        <p>El costo total se divide en el costo de producir la materia prima y el costo logístico inicial.</p>
-        <p>Hay que tener en cuenta que no son valores oficiales sino aproximados de la región.</p>
+  <h2>Transporte</h2>
+  <p>
+    Se asumen valores promedio para un camión de carga pesada (25 t) que usa diésel.  
+    Precio diésel en Illinois: <strong>$3.89/galón</strong> ≈ <strong>$1.03/L</strong>.  
+    Consumo estimado: <strong>0.40 L/km</strong>.
+  </p>
 
-        <h2>Transporte</h2>
-        <p>Asumimos valores promedio para un camión de transporte de carga pesada, el cual utiliza diésel y tiene una capacidad de carga de 25 toneladas.</p>
+  <h3>Cálculos</h3>
+  <ul>
+    <li><strong>Gasto camión/km:</strong> 0.40 L/km × 1.03 $/L = <strong>0.412 $/km</strong></li>
+    <li><strong>Gasto por tonelada-km:</strong> 0.412 / 25 t = <strong>0.01648 $/ton-km</strong></li>
+  </ul>
 
-        <ul>
-            <li>Precio promedio del diésel en Illinois: <strong>$3.89 por galón</strong> ≈ <strong>$1.03 por litro</strong></li>
-            <li>Consumo del camión: <strong>0.40 L/km</strong></li>
-        </ul>
+  <h2>Costo de Producción de Materia Prima</h2>
+  <p>Costo por tonelada = Costo total por hectárea / Rendimiento (t/ha)</p>
 
-        <p><strong>Cálculo del costo por kilómetro:</strong></p>
-        <pre>
-        Gasto camión/km = Consumo * Precio diésel
-        Gasto camión/km = 0.40 L/km * 1.03 $/L = 0.412 $/km
-        Gasto Ton/km = (0.412 $/km) / 25 t = 0.01648 $/ton-km
-                </pre>
+  <h3>Costos por hectárea</h3>
+  <h4>Insumos</h4>
+  <ul>
+    <li>Semillas: $80</li>
+    <li>Fertilizantes: $140</li>
+    <li>Químicos: $40</li>
+    <li><strong>Total Insumos: $260</strong></li>
+  </ul>
 
-                <h2>Costo de Producción de Materia Prima</h2>
-                <p>Costo de producción por tonelada = Costo total por hectárea / Rendimiento (t/ha)</p>
+  <h4>Maquinaria</h4>
+  <ul>
+    <li>Combustible: $30</li>
+    <li>Reparación: $50</li>
+    <li><strong>Total Maquinaria: $80</strong></li>
+  </ul>
 
-                <h3>Insumos (por hectárea)</h3>
-                <ul>
-                    <li>Semillas: $80</li>
-                    <li>Fertilizantes: $140</li>
-                    <li>Químicos: $40</li>
-                    <li><strong>Total insumos: $260</strong></li>
-                </ul>
+  <h4>Costos de Capital</h4>
+  <ul>
+    <li>Renta: $300</li>
+    <li>Seguro: $25</li>
+    <li><strong>Total Capital: $325</strong></li>
+  </ul>
 
-                <h3>Maquinaria</h3>
-                <ul>
-                    <li>Combustible: $30</li>
-                    <li>Reparación: $50</li>
-                    <li><strong>Total maquinaria: $80</strong></li>
-                </ul>
+  <p><strong>Costo Total por Hectárea: $665</strong></p>
 
-                <h3>Costos de Capital</h3>
-                <ul>
-                    <li>Renta: $300</li>
-                    <li>Seguro: $25</li>
-                    <li><strong>Total capital: $325</strong></li>
-                </ul>
+  <h3>Rendimiento aproximado de soya</h3>
+  <p>4.30 t/ha = 64 BU/acre</p>
 
-                <p><strong>Costo total por hectárea = $665</strong></p>
+  <p>
+    <strong>Costo de producción por tonelada:</strong> 665 / 4.30 =  
+    <strong>$154.65 por tonelada</strong>
+  </p>
 
-                <h2>Rendimiento Aproximado de Soya</h2>
-                <p>4.30 toneladas = 64 BU/acre</p>
+  <h2>Precio de Mercado</h2>
+  <p>
+    Precio por unidad: <strong>10.2 $/BU</strong><br>
+    1 tonelada = 36.74 BU<br>
+    36.74 × 10.2 = <strong>$374.79 por tonelada</strong>
+  </p>
 
-                <pre>
-        Costo de producción por tonelada = 665 $/ha / 4.30 t/ha = 154.65 $/ton
-                </pre>
+  <h2>Detalle del Costo Logístico: Parcelas a Centro de Acopio</h2>
 
-                <h2>Precio de Mercado</h2>
-                <ul>
-                    <li>Precio por unidad: 10.2 $/BU</li>
-                    <li>1 tonelada = 36.74 BU</li>
-                </ul>
+  <p>
+    Distancia: <strong>245.96 km</strong><br>
+    Distancia total ida y vuelta: <strong>491.92 km</strong><br>
+    Factor operacional: 2.5 × costo de combustible
+  </p>
 
-                <pre>
-        36.74 BU/t * 10.2 $/BU = 374.79 $/ton
-                </pre>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Rubro</th>
+        <th>Cálculo del Gasto (USD/ton)</th>
+        <th>Gasto por Tonelada (USD/ton)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Costo de Combustible</td>
+        <td>$4.05 + $2.03</td>
+        <td><strong>$6.08</strong></td>
+      </tr>
+      <tr>
+        <td>Costos Operacionales Fijos</td>
+        <td>6.08 × 2.5</td>
+        <td><strong>$15.20</strong></td>
+      </tr>
+      <tr>
+        <td>Costo Logístico Inicial Total</td>
+        <td>6.08 + 15.20</td>
+        <td><strong>$21.28</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-            </div>
+  <p><strong>Costo Total: $154.65 + $21.28 = $175.93 por tonelada</strong></p>
+
+  <h2>Detalle del Costo Logístico: Centro de Acopio a Puerto</h2>
+
+  <p>
+    Distancia: <strong>211.85 km</strong><br>
+    Distancia total ida y vuelta: <strong>423.70 km</strong><br>
+    Factor operacional: 2.5 × costo de combustible
+  </p>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Rubro</th>
+        <th>Cálculo del Gasto (USD/ton)</th>
+        <th>Costo por Tonelada (USD/ton)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Costo de Combustible</td>
+        <td>
+          Ida: 211.85 × 0.01648 = $3.49<br>
+          Vuelta: 3.49 × 0.5 = $1.75
+        </td>
+        <td><strong>$5.24</strong></td>
+      </tr>
+      <tr>
+        <td>Costos Operacionales Fijos</td>
+        <td>5.24 × 2.5</td>
+        <td><strong>$13.10</strong></td>
+      </tr>
+      <tr>
+        <td>Costo Logístico Total</td>
+        <td>5.24 + 13.10</td>
+        <td><strong>$18.34</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Costo Total: $154.65 + $18.34 = $172.99 por tonelada</strong></p>
+</section>
+
         </main>
 
     <footer>
