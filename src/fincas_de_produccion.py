@@ -7,11 +7,11 @@ import requests
 fincas = [
     {"nombre": "Finca 1", "lat": 40.92, "lon": -89.53, "info": "Parcela de producción"},
     {"nombre": "Finca 2", "lat": 40.92, "lon": -89.54, "info": "Parcela de producción"},
-    {"nombre": "Finca 3", "lat": 40.91, "lon": -89.53", "info": "Parcela de producción"},
-    {"nombre": "Finca 4", "lat": 40.91, "lon": -89.52", "info": "Parcela de producción"},
-    {"nombre": "Finca 5", "lat": 40.91, "lon": -89.54", "info": "Parcela de producción"},
-    {"nombre": "Finca 6", "lat": 40.91, "lon": -89.55", "info": "Parcela de producción"},
-    {"nombre": "Finca 7", "lat": 40.91, "lon": -89.51", "info": "Parcela de producción"},
+    {"nombre": "Finca 3", "lat": 40.91, "lon": -89.53, "info": "Parcela de producción"},
+    {"nombre": "Finca 4", "lat": 40.91, "lon": -89.52, "info": "Parcela de producción"},
+    {"nombre": "Finca 5", "lat": 40.91, "lon": -89.54, "info": "Parcela de producción"},
+    {"nombre": "Finca 6", "lat": 40.91, "lon": -89.55, "info": "Parcela de producción"},
+    {"nombre": "Finca 7", "lat": 40.91, "lon": -89.51, "info": "Parcela de producción"},
 ]
 
 # Crear un mapa base usando Folium.

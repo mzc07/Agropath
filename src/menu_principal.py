@@ -59,19 +59,19 @@ if __name__ == "__main__":
 
                 # Cada caso abre un archivo HTML o ejecuta una función específica.
                 case 1:
-                    webbrowser.open_new(r'pages\index\mapa_fincas_illinois.html')
+                    webbrowser.open_new(r'docs\index.html')
 
                 case 2:
-                    webbrowser.open_new(r'pages\index\centro_de_acopio.html')
+                    webbrowser.open_new(r'docs\centro_de_acopio.html')
 
                 case 3:
-                    webbrowser.open_new(r'pages\index\puerto_st_louis.html')
+                    webbrowser.open_new(r'docs\puerto_st_louis.html')
 
                 case 4:
-                    webbrowser.open_new(r'pages\index\rutas_fincas_centro.html')
+                    webbrowser.open_new(r'docs\rutas_fincas_centro.html')
 
                 case 5:
-                    webbrowser.open_new(r'pages\index\ruta_centro_puerto.html')
+                    webbrowser.open_new(r'docs\ruta_centro_puerto.html')
 
                 case 6:
                     # Llama a la función importada que realiza regresiones de producción
@@ -85,11 +85,9 @@ if __name__ == "__main__":
                 case 9:
                     # Abre el repositorio de código desde la función importada
                     abrir_repositorio()
-
                 case 0:
                     # Opción para salir del programa
                     break
-
                 case _:
                     # Cualquier valor fuera de las opciones válidas
                     print("Error: Ingrese una opción valida.")
