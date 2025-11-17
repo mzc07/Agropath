@@ -153,7 +153,7 @@ def build_map(fincas, destination, rutas, map_filename="rutas_fincas_centro.html
 
 
 # Punto de entrada del script cuando se ejecuta directamente
-if __name__ == "__main__":
+def generar_rutas():
     rutas = {}
 
     print("Generando rutas desde las fincas hasta el centro de acopio...\n")

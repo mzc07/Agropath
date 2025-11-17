@@ -113,7 +113,7 @@ def build_map(origin, destination, route_points, map_filename="ruta_osrm.html"):
     m.save(map_filename)
     return m
 
-if __name__ == "__main__":
+def generar_ruta_cent():
     # Obtener la ruta desde OSRM
     route_points, distance_m = get_osrm_route(origin, destination)
     print(f"Ruta total: {distance_m/1000:.2f} km con {len(route_points)} puntos.")

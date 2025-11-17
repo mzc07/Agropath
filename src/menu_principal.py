@@ -1,5 +1,10 @@
 import os
 import webbrowser
+from fincas_de_produccion import fincas_de_produccion
+from centro_de_acopio import centros_de_acopio
+from puerto import puerto
+from ruta_fincas_centro import generar_rutas
+from ruta_centro_puerto import generar_ruta_cent
 from analisis_produccion import regresion_produccion
 from repositorio_abrir import abrir_repositorio
 from calculadora import calcular_costos
@@ -59,20 +64,40 @@ if __name__ == "__main__":
 
                 # Cada caso abre un archivo HTML o ejecuta una función específica.
                 case 1:
-                    webbrowser.open_new(r'docs\index.html')
-
+                    try:
+                        webbrowser.open_new(r'docs\mapa_fincas_illinois.html')
+                    except Exception as error:
+                        print(f'Error: {error}')
+                        print("Generando archivo")
+                        fincas_de_produccion()
                 case 2:
-                    webbrowser.open_new(r'docs\centro_de_acopio.html')
-
+                    try:
+                        webbrowser.open_new(r'docs\centro_de_acopio.html')
+                    except Exception as error:
+                        print(f'Error: {error}')
+                        print("Generando archivo")
+                        centros_de_acopio()
                 case 3:
-                    webbrowser.open_new(r'docs\puerto_st_louis.html')
-
+                    try:
+                        webbrowser.open_new(r'docs\puerto_st_louis.html')
+                    except Exception as error:
+                        print(f'Error: {error}')
+                        print("Generando archivo")
+                        puerto()
                 case 4:
-                    webbrowser.open_new(r'docs\rutas_fincas_centro.html')
-
+                    try:
+                        webbrowser.open_new(r'docs\rutas_fincas_centro.html')
+                    except Exception as error:
+                        print(f'Error: {error}')
+                        print("Generando archivo")
+                        generar_rutas()
                 case 5:
-                    webbrowser.open_new(r'docs\ruta_centro_puerto.html')
-
+                    try:
+                        webbrowser.open_new(r'docs\ruta_centro_puerto.html')
+                    except Exception as error:
+                        print(f'Error: {error}')
+                        print("Generando archivo")
+                        generar_ruta_cent()
                 case 6:
                     # Llama a la función importada que realiza regresiones de producción
                     regresion_produccion()
