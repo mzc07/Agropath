@@ -91,3 +91,4 @@ if __name__ == "__main__":
                 case _:
                     # Cualquier valor fuera de las opciones válidas
                     print("Error: Ingrese una opción valida.")
+            input("Presione Enter para continuar")
